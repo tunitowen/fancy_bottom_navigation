@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math.dart' as vector;
+import 'package:vector_math/vector_math.dart';
 
 class HalfPainter extends CustomPainter {
   HalfPainter(Color paintColor) {
@@ -16,12 +16,12 @@ class HalfPainter extends CustomPainter {
     Rect.fromLTWH(size.width - 10, (size.height / 2) - 10, 10, 10);
 
     final path = Path();
-    path.arcTo(beforeRect, vector.radians(0), vector.radians(90), false);
+    path.arcTo(beforeRect, radians(0), radians(90), false);
     path.lineTo(20, size.height / 2);
-    path.arcTo(largeRect, vector.radians(0), -vector.radians(180), false);
+    path.arcTo(largeRect, radians(0), -radians(180), false);
     path.moveTo(size.width - 10, size.height / 2);
     path.lineTo(size.width - 10, (size.height / 2) - 10);
-    path.arcTo(afterRect, vector.radians(180), vector.radians(-90), false);
+    path.arcTo(afterRect, radians(180), radians(-90), false);
     path.close();
 
     canvas.drawPath(path, arcPaint);
