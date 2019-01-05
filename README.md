@@ -2,7 +2,15 @@
 
 ![Fancy Gif](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif "Fancy Gif")
 
-WIP .. not ready for publication yet .. soon though
+## Getting Started
+
+Add the plugin (pub coming soon):
+
+```yaml
+dependencies:
+  ...
+  fancy_bottom_navigation: ^0.1.0
+```
 
 ## Limitations
 For now this is limited to more than 1 tab, and less than 5. So 2-4 tabs.
