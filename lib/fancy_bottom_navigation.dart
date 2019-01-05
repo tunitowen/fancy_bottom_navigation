@@ -57,9 +57,13 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
   Color barBackgroundColor;
   Color textColor;
 
+  OverlayEntry _overlayEntry;
+  OverlayState _overlayState;
+
   @override
   void initState() {
     super.initState();
+    activeIcon = widget.tabs[widget.initialSelection].iconData;
     _setSelected(widget.tabs[widget.initialSelection].key);
     circleColor = (widget.circleColor == null)
         ? (Theme.of(widget.context).brightness == Brightness.dark)
@@ -88,6 +92,91 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
             ? Colors.white
             : Theme.of(widget.context).primaryColor
         : widget.inactiveIconColor;
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      this._overlayState = Overlay.of(context);
+      this._overlayEntry = this._createOverlayEntry();
+      _overlayState.insert(this._overlayEntry);
+    });
+
+    if (_overlayEntry != null) {
+      _overlayEntry.markNeedsBuild();
+      _overlayState.setState(() {});
+      this._overlayEntry = this._createOverlayEntry();
+    }
+  }
+
+  OverlayEntry _createOverlayEntry() {
+    debugPrint("Create Overlay Entry");
+    return OverlayEntry(
+        builder: (context) => IgnorePointer(
+              child: AnimatedAlign(
+                  duration: Duration(milliseconds: ANIM_DURATION),
+                  curve: Curves.easeOut,
+                  alignment: Alignment(_circleAlignX, 1),
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 15),
+                    child: FractionallySizedBox(
+                      widthFactor: 1 / widget.tabs.length,
+                      child: Stack(
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                          SizedBox(
+                            height:
+                                CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                            width:
+                                CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                            child: ClipRect(
+                                clipper: HalfClipper(),
+                                child: Container(
+                                  child: Center(
+                                    child: Container(
+                                        width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                        height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                        decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                  color: Colors.black12,
+                                                  blurRadius: 8)
+                                            ])),
+                                  ),
+                                )),
+                          ),
+                          SizedBox(
+                              height: ARC_HEIGHT,
+                              width: ARC_WIDTH,
+                              child: CustomPaint(
+                                painter: HalfPainter(barBackgroundColor),
+                              )),
+                          SizedBox(
+                            height: CIRCLE_SIZE,
+                            width: CIRCLE_SIZE,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  shape: BoxShape.circle, color: circleColor),
+                              child: Padding(
+                                padding: const EdgeInsets.all(0.0),
+                                child: AnimatedOpacity(
+                                  duration:
+                                      Duration(milliseconds: ANIM_DURATION ~/ 5),
+                                  opacity: _circleIconAlpha,
+                                  child: Icon(
+                                    activeIcon,
+                                    color: activeIconColor,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            );
   }
 
   _setSelected(UniqueKey key) {
@@ -98,6 +187,10 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
       _circleAlignX = -1 + (2 / (widget.tabs.length - 1) * selected);
       nextIcon = widget.tabs[selected].iconData;
     });
+
+    if (_overlayState != null) {
+      _overlayState.setState(() {});
+    }
   }
 
   @override
@@ -107,8 +200,6 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
       children: <Widget>[
         Container(
           height: BAR_HEIGHT,
-          margin: EdgeInsets.only(
-              top: (CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2),
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
@@ -134,86 +225,21 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
                 .toList(),
           ),
         ),
-        IgnorePointer(
-          child: Container(
-            height: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-            decoration: BoxDecoration(color: Colors.transparent),
-            child: AnimatedAlign(
-              duration: Duration(milliseconds: ANIM_DURATION),
-              curve: Curves.easeOut,
-              alignment: Alignment(_circleAlignX, 0),
-              child: FractionallySizedBox(
-                widthFactor: 1 / widget.tabs.length,
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: <Widget>[
-                    SizedBox(
-                      height: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                      width: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                      child: ClipRect(
-                          clipper: HalfClipper(),
-                          child: Container(
-                            child: Center(
-                              child: Container(
-                                  width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                  height: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                      boxShadow: [
-                                        BoxShadow(
-                                            color: Colors.black12,
-                                            blurRadius: 8)
-                                      ])),
-                            ),
-                          )),
-                    ),
-                    SizedBox(
-                        height: ARC_HEIGHT,
-                        width: ARC_WIDTH,
-                        child: CustomPaint(
-                          painter: HalfPainter(barBackgroundColor),
-                        )),
-                    SizedBox(
-                      height: CIRCLE_SIZE,
-                      width: CIRCLE_SIZE,
-                      child: Container(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle, color: circleColor),
-                        child: Padding(
-                          padding: const EdgeInsets.all(0.0),
-                          child: AnimatedOpacity(
-                            duration:
-                                Duration(milliseconds: ANIM_DURATION ~/ 5),
-                            opacity: _circleIconAlpha,
-                            child: Icon(
-                              activeIcon,
-                              color: activeIconColor,
-                            ),
-                          ),
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
       ],
     );
   }
 
   _initAnimationAndStart(double from, double to) {
-//    _circleAlignX = to;
     _circleIconAlpha = 0;
 
     Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
+      _overlayState.setState(() {});
       setState(() {
         activeIcon = nextIcon;
       });
     }).then((_) {
       Future.delayed(Duration(milliseconds: (ANIM_DURATION ~/ 5 * 3)), () {
+        _overlayState.setState(() {});
         setState(() {
           _circleIconAlpha = 1;
         });
