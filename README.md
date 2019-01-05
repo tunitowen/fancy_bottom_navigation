@@ -1,14 +1,12 @@
-# fancy_bottom_navigation
+# FancyBottomNavigation
 
-A new Flutter package.
+![Fancy Gif](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_gif.gif "Fancy Gif")
 
-## Getting Started
+WIP .. not ready for publication yet .. soon though
 
-This project is a starting point for a Dart
-[package](https://flutter.io/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+## Theming
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+The bar will attempt to use your current theme out of the box, however you may want to theme it. Here are the attributes:
+
+
+![Fancy Theming](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_theming.png "Fancy Theming")
