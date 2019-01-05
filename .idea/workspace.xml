@@ -25,29 +25,11 @@
       <file leaf-file-name="fancy_bottom_navigation.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
-              <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+            <state relative-caret-position="285">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="27" />
               <folding>
                 <element signature="e#34#73#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6090">
-              <caret line="406" column="121" selection-start-line="406" selection-start-column="121" selection-end-line="406" selection-end-column="121" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="LICENSE" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/LICENSE">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="610">
-              <caret line="200" column="33" selection-start-line="200" selection-start-column="33" selection-end-line="200" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -358,13 +340,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6090">
-          <caret line="406" column="121" selection-start-line="406" selection-start-column="121" selection-end-line="406" selection-end-column="121" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="610">
@@ -379,10 +354,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="670">
+          <caret line="406" column="121" selection-start-line="406" selection-start-column="121" selection-end-line="406" selection-end-column="121" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="108" column="41" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+        <state relative-caret-position="285">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="11" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="e#34#73#0" expanded="true" />
           </folding>

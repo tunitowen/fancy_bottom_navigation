@@ -16,8 +16,8 @@ class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
       @required this.context,
+      @required this.onTabChangedListener,
       this.initialSelection = 0,
-      this.onTabChangedListener,
       this.circleColor,
       this.activeIconColor,
       this.inactiveIconColor,
@@ -107,7 +107,8 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
       children: <Widget>[
         Container(
           height: BAR_HEIGHT,
-          margin: EdgeInsets.only(top: (CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE)/2),
+          margin: EdgeInsets.only(
+              top: (CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2),
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
