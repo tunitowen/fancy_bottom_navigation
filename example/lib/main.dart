@@ -25,42 +25,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
 
-  OverlayEntry _overlayEntry;
-
-  @override
-  void initState() {
-    super.initState();
-
-//    WidgetsBinding.instance.addPostFrameCallback((_) {
-//      this._overlayEntry = this._createOverlayEntry();
-//      Overlay.of(context).insert(this._overlayEntry);
-//    });
-  }
-
-//  OverlayEntry _createOverlayEntry() {
-//    return OverlayEntry(
-//        builder: (context) => Positioned(
-//              left: 0,
-//              top: 100,
-//              width: 100,
-//              child: Material(
-//                elevation: 4.0,
-//                child: ListView(
-//                  padding: EdgeInsets.zero,
-//                  shrinkWrap: true,
-//                  children: <Widget>[
-//                    ListTile(
-//                      title: Text('Syria'),
-//                    ),
-//                    ListTile(
-//                      title: Text('Lebanon'),
-//                    )
-//                  ],
-//                ),
-//              ),
-//            ));
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,7 +32,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text("Fancy Bottom Navigation"),
       ),
       body: Container(
-        decoration: BoxDecoration(color: Colors.blueGrey),
+        decoration: BoxDecoration(color: Colors.white),
         child: Center(
           child: _getPage(currentPage),
         ),
