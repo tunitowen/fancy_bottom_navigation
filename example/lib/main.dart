@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
-import 'package:fancy_bottom_navigation/model/tab_data.dart';
 
 void main() => runApp(MyApp());
 

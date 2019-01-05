@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
-import 'package:fancy_bottom_navigation/model/tab_data.dart';
 
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
@@ -218,4 +217,12 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
       });
     });
   }
+}
+
+class TabData {
+  TabData({@required this.iconData, @required this.title});
+
+  IconData iconData;
+  String title;
+  final UniqueKey key = UniqueKey();
 }
