@@ -58,3 +58,7 @@ The bar will attempt to use your current theme out of the box, however you may w
 
 This package was inspired by a design on dribbble by Manoj Rajput:<br/>
 https://dribbble.com/shots/5419022-Tab
+
+## Contributing
+
+Contributions are welcome, please submit a PR :)
