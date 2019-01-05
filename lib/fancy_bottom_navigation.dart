@@ -5,6 +5,13 @@ import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
 
+const double CIRCLE_SIZE = 60;
+const double ARC_HEIGHT = 70;
+const double ARC_WIDTH = 90;
+const double CIRCLE_OUTLINE = 10;
+const double SHADOW_ALLOWANCE = 20;
+const double BAR_HEIGHT = 60;
+
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
@@ -77,9 +84,9 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
             : Colors.black54
         : widget.textColor;
     inactiveIconColor = (widget.inactiveIconColor == null)
-      ? (Theme.of(widget.context).brightness == Brightness.dark)
-        ? Colors.white
-        : Theme.of(widget.context).primaryColor
+        ? (Theme.of(widget.context).brightness == Brightness.dark)
+            ? Colors.white
+            : Theme.of(widget.context).primaryColor
         : widget.inactiveIconColor;
   }
 
@@ -99,8 +106,8 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
       alignment: Alignment.topCenter,
       children: <Widget>[
         Container(
-          height: 65,
-          margin: EdgeInsets.only(top: 50),
+          height: BAR_HEIGHT,
+          margin: EdgeInsets.only(top: (CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE)/2),
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
@@ -128,7 +135,7 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
         ),
         IgnorePointer(
           child: Container(
-            height: 100,
+            height: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
             decoration: BoxDecoration(color: Colors.transparent),
             child: AnimatedAlign(
               duration: Duration(milliseconds: ANIM_DURATION),
@@ -140,15 +147,15 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
                   alignment: Alignment.center,
                   children: <Widget>[
                     SizedBox(
-                      height: 90,
-                      width: 90,
+                      height: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                      width: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
                       child: ClipRect(
                           clipper: HalfClipper(),
                           child: Container(
                             child: Center(
                               child: Container(
-                                  width: 70,
-                                  height: 70,
+                                  width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                  height: CIRCLE_SIZE + CIRCLE_OUTLINE,
                                   decoration: BoxDecoration(
                                       color: Colors.white,
                                       shape: BoxShape.circle,
@@ -161,22 +168,17 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
                           )),
                     ),
                     SizedBox(
-                        height: 70,
-                        width: 90,
+                        height: ARC_HEIGHT,
+                        width: ARC_WIDTH,
                         child: CustomPaint(
                           painter: HalfPainter(barBackgroundColor),
                         )),
                     SizedBox(
-                      height: 60,
-                      width: 60,
+                      height: CIRCLE_SIZE,
+                      width: CIRCLE_SIZE,
                       child: Container(
                         decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: circleColor,
-                            border: Border.all(
-                                color: Colors.white,
-                                width: 5,
-                                style: BorderStyle.none)),
+                            shape: BoxShape.circle, color: circleColor),
                         child: Padding(
                           padding: const EdgeInsets.all(0.0),
                           child: AnimatedOpacity(
