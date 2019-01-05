@@ -7,6 +7,24 @@ WIP .. not ready for publication yet .. soon though
 ## Limitations
 For now this is limited to more than 1 tab, and less than 5. So 2-4 tabs.
 
+## Basic Usage
+
+```dart
+bottomNavigationBar: FancyBottomNavigation(
+    tabs: [
+        TabData(iconData: Icons.home, title: "Home"),
+        TabData(iconData: Icons.search, title: "Search"),
+        TabData(iconData: Icons.shopping_cart, title: "Basket")
+    ],
+    context: context,
+    onTabChangedListener: (position) {
+        setState(() {
+        currentPage = position;
+        });
+    },
+)
+```
+
 ## Attributes
 ### required
 **tabs** -> List of `TabData` objects<br/>
