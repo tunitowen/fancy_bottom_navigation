@@ -36,7 +36,6 @@ bottomNavigationBar: FancyBottomNavigation(
 ## Attributes
 ### required
 **tabs** -> List of `TabData` objects<br/>
-**context** -> Current `BuildContext`<br/>
 **onTabChangedListener** -> Function to handle a tap on a tab, receives `int position`
 
 ### optional
