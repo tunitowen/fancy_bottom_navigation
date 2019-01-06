@@ -15,7 +15,6 @@ const double BAR_HEIGHT = 60;
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
-      @required this.context,
       @required this.onTabChangedListener,
       this.initialSelection = 0,
       this.circleColor,
@@ -24,7 +23,6 @@ class FancyBottomNavigation extends StatefulWidget {
       this.textColor,
       this.barBackgroundColor})
       : assert(onTabChangedListener != null),
-        assert(context != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
 
@@ -36,7 +34,6 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
-  final BuildContext context;
 
   @override
   _FancyBottomNavigationState createState() => _FancyBottomNavigationState();
@@ -61,37 +58,42 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
   OverlayState _overlayState;
 
   @override
-  void initState() {
-    super.initState();
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     activeIcon = widget.tabs[widget.initialSelection].iconData;
     _setSelected(widget.tabs[widget.initialSelection].key);
     circleColor = (widget.circleColor == null)
-        ? (Theme.of(widget.context).brightness == Brightness.dark)
-            ? Colors.white
-            : Theme.of(widget.context).primaryColor
+        ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Theme.of(context).primaryColor
         : widget.circleColor;
 
     activeIconColor = (widget.activeIconColor == null)
-        ? (Theme.of(widget.context).brightness == Brightness.dark)
-            ? Colors.black54
-            : Colors.white
+        ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.black54
+        : Colors.white
         : widget.activeIconColor;
 
     barBackgroundColor = (widget.barBackgroundColor == null)
-        ? (Theme.of(widget.context).brightness == Brightness.dark)
-            ? Color(0xFF212121)
-            : Colors.white
+        ? (Theme.of(context).brightness == Brightness.dark)
+        ? Color(0xFF212121)
+        : Colors.white
         : widget.barBackgroundColor;
     textColor = (widget.textColor == null)
-        ? (Theme.of(widget.context).brightness == Brightness.dark)
-            ? Colors.white
-            : Colors.black54
+        ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Colors.black54
         : widget.textColor;
     inactiveIconColor = (widget.inactiveIconColor == null)
-        ? (Theme.of(widget.context).brightness == Brightness.dark)
-            ? Colors.white
-            : Theme.of(widget.context).primaryColor
+        ? (Theme.of(context).brightness == Brightness.dark)
+        ? Colors.white
+        : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
+  }
+
+  @override
+  void initState() {
+    super.initState();
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       this._overlayState = Overlay.of(context);
