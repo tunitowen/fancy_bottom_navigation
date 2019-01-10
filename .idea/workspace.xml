@@ -7,10 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d49a77d2-32e0-436a-826a-b36d18856957" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/example/lib/second_page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/example/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/fancy_bottom_navigation.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/fancy_bottom_navigation.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/fancy_widget_tests.dart" beforeDir="false" afterPath="$PROJECT_DIR$/test/fancy_widget_tests.dart" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.dart_tool/" />
     <ignored path="$PROJECT_DIR$/.idea/" />
@@ -25,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="fancy_bottom_navigation.dart" pinned="false" current-in-tab="true">
+      <file leaf-file-name="fancy_bottom_navigation.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="536">
-              <caret line="108" column="61" selection-start-line="108" selection-start-column="61" selection-end-line="108" selection-end-column="61" />
+            <state relative-caret-position="277">
+              <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
               <folding>
                 <element signature="e#34#73#0" expanded="true" />
               </folding>
@@ -37,7 +34,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.dart" pinned="false" current-in-tab="false">
+      <file leaf-file-name="main.dart" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/example/lib/main.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1095">
@@ -45,15 +42,6 @@
               <folding>
                 <element signature="e#0#39#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="overlay.dart" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../flutter/packages/flutter/lib/src/widgets/overlay.dart">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="387">
-              <caret line="110" column="22" selection-start-line="110" selection-start-column="9" selection-end-line="110" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -70,8 +58,8 @@
       <file leaf-file-name="fancy_widget_tests.dart" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/fancy_widget_tests.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
+            <state relative-caret-position="300">
+              <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
               <folding>
                 <element signature="e#0#70#0" expanded="true" />
               </folding>
@@ -108,6 +96,7 @@
       <find>setSt</find>
       <find>maintainState</find>
       <find>_circleAlignX</find>
+      <find>Create O</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -130,10 +119,10 @@
         <option value="$PROJECT_DIR$/fancy_navigation_tests.dart" />
         <option value="$PROJECT_DIR$/test/fancy_navigation_tests.dart" />
         <option value="$PROJECT_DIR$/pubspec.yaml" />
-        <option value="$PROJECT_DIR$/test/fancy_widget_tests.dart" />
         <option value="$PROJECT_DIR$/example/lib/second_page.dart" />
         <option value="$PROJECT_DIR$/example/lib/main.dart" />
         <option value="$PROJECT_DIR$/lib/fancy_bottom_navigation.dart" />
+        <option value="$PROJECT_DIR$/test/fancy_widget_tests.dart" />
       </list>
     </option>
   </component>
@@ -179,6 +168,11 @@
               <item name="lib" type="462c0819:PsiDirectoryNode" />
               <item name="internal" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="fancy_bottom_navigation" type="b2602c69:ProjectViewProjectNode" />
+              <item name="fancy_bottom_navigation" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -214,7 +208,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Flutter.main.dart">
+  <component name="RunManager" selected="Flutter Test.tests in fancy_widget_tests.dart">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -282,8 +276,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Flutter Test.Fancy Nav has correct tabs" />
         <item itemvalue="Flutter Test.tests in fancy_widget_tests.dart" />
+        <item itemvalue="Flutter Test.Fancy Nav has correct tabs" />
         <item itemvalue="Dart Command Line App.fancy_navigation_tests.dart" />
       </list>
     </recent_temporary>
@@ -374,18 +368,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/test/fancy_widget_tests.dart</url>
-          <line>29</line>
+          <line>30</line>
           <option name="timeStamp" value="6" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="Dart">
           <url>file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart</url>
-          <line>176</line>
+          <line>165</line>
           <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="Dart">
-          <url>file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart</url>
-          <line>112</line>
-          <option name="timeStamp" value="10" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="11" />
@@ -556,23 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/fancy_widget_tests.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="6" selection-start-line="32" selection-start-column="6" selection-end-line="32" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#70#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/lib/second_page.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../flutter/packages/flutter/lib/src/material/floating_action_button.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="768">
@@ -601,6 +573,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="277">
+          <caret line="24" column="31" lean-forward="true" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
+          <folding>
+            <element signature="e#34#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/fancy_widget_tests.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="36" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#70#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/example/lib/second_page.dart">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/../flutter/packages/flutter/lib/src/widgets/overlay.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="387">
@@ -614,16 +613,6 @@
           <caret line="73" column="22" selection-start-line="73" selection-start-column="22" selection-end-line="73" selection-end-column="22" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lib/fancy_bottom_navigation.dart">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="536">
-          <caret line="108" column="61" selection-start-line="108" selection-start-column="61" selection-end-line="108" selection-end-column="61" />
-          <folding>
-            <element signature="e#34#73#0" expanded="true" />
           </folding>
         </state>
       </provider>

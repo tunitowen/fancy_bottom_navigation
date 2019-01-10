@@ -18,6 +18,7 @@ void main() {
         TabData(iconData: Icons.home, title: "Home"),
         TabData(iconData: Icons.search, title: "Search")
       ],
+      routeObserver: RouteObserver(),
       onTabChangedListener: (position) {},
     );
 
