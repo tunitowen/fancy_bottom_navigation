@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
+import 'package:example/second_page.dart';
 
 void main() => runApp(MyApp());
 
+final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
+
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -13,17 +16,21 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       home: MyHomePage(),
+      navigatorObservers: [routeObserver],
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
+
+  GlobalKey bottomNavigationKey = GlobalKey();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +50,8 @@ class _MyHomePageState extends State<MyHomePage> {
           TabData(iconData: Icons.search, title: "Search"),
           TabData(iconData: Icons.shopping_cart, title: "Basket")
         ],
+        key: bottomNavigationKey,
+        routeObserver: routeObserver,
         onTabChangedListener: (position) {
           setState(() {
             currentPage = position;
@@ -55,11 +64,39 @@ class _MyHomePageState extends State<MyHomePage> {
   _getPage(int page) {
     switch (page) {
       case 0:
-        return Text("This is the home page");
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("This is the home page"),
+            RaisedButton(child: Text("Start new page", style: TextStyle(color: Colors.white),), color: Theme.of(context).primaryColor, onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => SecondPage()));
+            },),
+            RaisedButton(child: Text("Change to page 3", style: TextStyle(color: Colors.white),), color: Theme.of(context).accentColor, onPressed: (){
+              final FancyBottomNavigationState fState = bottomNavigationKey.currentState;
+              fState.setPage(2);
+            },)
+          ],
+        );
       case 1:
-        return Text("This is the search page");
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("This is the search page"),
+            RaisedButton(child: Text("Start new page", style: TextStyle(color: Colors.white),), color: Theme.of(context).primaryColor, onPressed: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) => SecondPage()));
+            },)
+          ],
+        );
       default:
-        return Text("This is the basket page");
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text("This is the basket page"),
+            RaisedButton(child: Text("Start new page", style: TextStyle(color: Colors.white),), color: Theme.of(context).primaryColor, onPressed: (){
+
+            },)
+          ],
+        );
     }
   }
 }

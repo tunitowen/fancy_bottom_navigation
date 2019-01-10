@@ -9,7 +9,7 @@ Add the plugin (pub coming soon):
 ```yaml
 dependencies:
   ...
-  fancy_bottom_navigation: ^0.1.1
+  fancy_bottom_navigation: ^0.2.0
 ```
 
 ## Limitations
@@ -17,6 +17,7 @@ For now this is limited to more than 1 tab, and less than 5. So 2-4 tabs.
 
 ## Basic Usage
 
+Adding the widget
 ```dart
 bottomNavigationBar: FancyBottomNavigation(
     tabs: [
@@ -24,6 +25,7 @@ bottomNavigationBar: FancyBottomNavigation(
         TabData(iconData: Icons.search, title: "Search"),
         TabData(iconData: Icons.shopping_cart, title: "Basket")
     ],
+    routeObserver: routeObserver,
     onTabChangedListener: (position) {
         setState(() {
         currentPage = position;
@@ -32,10 +34,24 @@ bottomNavigationBar: FancyBottomNavigation(
 )
 ```
 
+Creating a route observer
+```dart
+final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
+
+...
+
+return MaterialApp(
+      ...
+      navigatorObservers: [routeObserver],
+    );
+```
+See the example app for full implementation.
+
 ## Attributes
 ### required
 **tabs** -> List of `TabData` objects<br/>
 **onTabChangedListener** -> Function to handle a tap on a tab, receives `int position`
+**routeObserver** -> RouteObserver needed to remove Overlay when navigating away.
 
 ### optional
 **initialSelection** -> Defaults to 0<br/>
@@ -43,7 +59,8 @@ bottomNavigationBar: FancyBottomNavigation(
 **activeIconColor** -> Defaults to null, derives from `Theme`<br/>
 **inactiveIconColor** -> Defaults to null, derives from `Theme`<br/>
 **taxtColor** -> Defaults to null, derives from `Theme`<br/>
-**barBagroundColor** -> Defaults to null, derives from `Theme`<br/>
+**barBackgroundColor** -> Defaults to null, derives from `Theme`<br/>
+**key** -> Defaults to null<br/>
 
 ## Theming
 
@@ -52,6 +69,10 @@ The bar will attempt to use your current theme out of the box, however you may w
 
 ![Fancy Theming](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_theming.png "Fancy Theming")
 
+## Programmatic Selection
+
+To select a tab programmatically you will need to assign a GlobalKey to the widget. When you want to change tabs you will need to access the State using this key, and then call `setPage(position)`.<br/>
+See example project, main.dart, line 75 for an example.
 ## Inspiration
 
 This package was inspired by a design on dribbble by Manoj Rajput:<br/>
