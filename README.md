@@ -43,7 +43,8 @@ bottomNavigationBar: FancyBottomNavigation(
 **activeIconColor** -> Defaults to null, derives from `Theme`<br/>
 **inactiveIconColor** -> Defaults to null, derives from `Theme`<br/>
 **taxtColor** -> Defaults to null, derives from `Theme`<br/>
-**barBagroundColor** -> Defaults to null, derives from `Theme`<br/>
+**barBackgroundColor** -> Defaults to null, derives from `Theme`<br/>
+**key** -> Defaults to null<br/>
 
 ## Theming
 
@@ -52,6 +53,10 @@ The bar will attempt to use your current theme out of the box, however you may w
 
 ![Fancy Theming](https://github.com/tunitowen/fancy_bottom_navigation/blob/master/fancy_theming.png "Fancy Theming")
 
+## Programmatic Selection
+
+To select a tab programmatically you will need to assign a GlobalKey to the widget. When you want to change tabs you will need to access the State using this key, and then call `setPage(position)`.<br/>
+See example project, main.dart, line 75 for an example.
 ## Inspiration
 
 This package was inspired by a design on dribbble by Manoj Rajput:<br/>
