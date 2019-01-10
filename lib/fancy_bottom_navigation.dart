@@ -17,6 +17,7 @@ class FancyBottomNavigation extends StatefulWidget {
       {@required this.tabs,
       @required this.onTabChangedListener,
       @required this.routeObserver,
+        this.key,
       this.initialSelection = 0,
       this.circleColor,
       this.activeIconColor,
@@ -36,12 +37,13 @@ class FancyBottomNavigation extends StatefulWidget {
   final List<TabData> tabs;
   final int initialSelection;
   final RouteObserver<PageRoute> routeObserver;
+  final Key key;
 
   @override
-  _FancyBottomNavigationState createState() => _FancyBottomNavigationState();
+  FancyBottomNavigationState createState() => FancyBottomNavigationState();
 }
 
-class _FancyBottomNavigationState extends State<FancyBottomNavigation>
+class FancyBottomNavigationState extends State<FancyBottomNavigation>
     with TickerProviderStateMixin, RouteAware {
   IconData nextIcon = Icons.search;
   IconData activeIcon = Icons.search;
@@ -264,6 +266,17 @@ class _FancyBottomNavigationState extends State<FancyBottomNavigation>
   void dispose() {
     widget.routeObserver.unsubscribe(this);
     super.dispose();
+  }
+
+  void setPage(int page) {
+
+    widget.onTabChangedListener(page);
+    _setSelected(widget.tabs[page].key);
+    _initAnimationAndStart(_circleAlignX, 1);
+
+    setState(() {
+      currentSelected = page;
+    });
   }
 }
 

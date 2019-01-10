@@ -30,6 +30,8 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int currentPage = 0;
 
+  GlobalKey bottomNavigationKey = GlobalKey();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,6 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TabData(iconData: Icons.search, title: "Search"),
           TabData(iconData: Icons.shopping_cart, title: "Basket")
         ],
+        key: bottomNavigationKey,
         routeObserver: routeObserver,
         onTabChangedListener: (position) {
           setState(() {
@@ -67,6 +70,10 @@ class _MyHomePageState extends State<MyHomePage> {
             Text("This is the home page"),
             RaisedButton(child: Text("Start new page", style: TextStyle(color: Colors.white),), color: Theme.of(context).primaryColor, onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => SecondPage()));
+            },),
+            RaisedButton(child: Text("Change to page 3", style: TextStyle(color: Colors.white),), color: Theme.of(context).accentColor, onPressed: (){
+              final FancyBottomNavigationState fState = bottomNavigationKey.currentState;
+              fState.setPage(2);
             },)
           ],
         );
@@ -86,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Text("This is the basket page"),
             RaisedButton(child: Text("Start new page", style: TextStyle(color: Colors.white),), color: Theme.of(context).primaryColor, onPressed: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) => SecondPage()));
+
             },)
           ],
         );
