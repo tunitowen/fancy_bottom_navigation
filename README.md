@@ -9,7 +9,7 @@ Add the plugin (pub coming soon):
 ```yaml
 dependencies:
   ...
-  fancy_bottom_navigation: ^0.2.0
+  fancy_bottom_navigation: ^0.3.0
 ```
 
 ## Limitations
@@ -25,7 +25,6 @@ bottomNavigationBar: FancyBottomNavigation(
         TabData(iconData: Icons.search, title: "Search"),
         TabData(iconData: Icons.shopping_cart, title: "Basket")
     ],
-    routeObserver: routeObserver,
     onTabChangedListener: (position) {
         setState(() {
         currentPage = position;
@@ -34,24 +33,10 @@ bottomNavigationBar: FancyBottomNavigation(
 )
 ```
 
-Creating a route observer
-```dart
-final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
-
-...
-
-return MaterialApp(
-      ...
-      navigatorObservers: [routeObserver],
-    );
-```
-See the example app for full implementation.
-
 ## Attributes
 ### required
 **tabs** -> List of `TabData` objects<br/>
 **onTabChangedListener** -> Function to handle a tap on a tab, receives `int position`
-**routeObserver** -> RouteObserver needed to remove Overlay when navigating away.
 
 ### optional
 **initialSelection** -> Defaults to 0<br/>

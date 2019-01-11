@@ -4,8 +4,6 @@ import 'package:example/second_page.dart';
 
 void main() => runApp(MyApp());
 
-final RouteObserver<PageRoute> routeObserver = new RouteObserver<PageRoute>();
-
 class MyApp extends StatelessWidget {
 
   @override
@@ -16,7 +14,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepOrange,
       ),
       home: MyHomePage(),
-      navigatorObservers: [routeObserver],
     );
   }
 }
@@ -51,13 +48,16 @@ class _MyHomePageState extends State<MyHomePage> {
           TabData(iconData: Icons.shopping_cart, title: "Basket")
         ],
         key: bottomNavigationKey,
-        routeObserver: routeObserver,
         onTabChangedListener: (position) {
           setState(() {
             currentPage = position;
           });
         },
       ),
+      drawer: Drawer(child: ListView(children: <Widget>[
+        Text("Hello"),
+        Text("World")
+      ],),),
     );
   }
 

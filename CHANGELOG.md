@@ -1,3 +1,8 @@
+# [0.3.0] - Remove Overlay widget causing huge problems
+* Removed Overlay widget
+* Added test
+* Changes to constructor, as RouteObserver is no longer needed.
+
 # [0.2.0] - Bug fixes, and new functionality
 * Breaking change!! Widget now requires a RouteObserver
 * Fixes bug where the active tabs circle is left on screen when navigating away
