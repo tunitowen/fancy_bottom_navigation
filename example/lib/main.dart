@@ -47,6 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
           TabData(iconData: Icons.search, title: "Search"),
           TabData(iconData: Icons.shopping_cart, title: "Basket")
         ],
+        initialSelection: 1,
         key: bottomNavigationKey,
         onTabChangedListener: (position) {
           setState(() {
