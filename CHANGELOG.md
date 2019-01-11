@@ -1,3 +1,6 @@
+# [0.3.1] - Fix wrong icon bug
+* Fixes bug where wrong icon is shown when navigating away and back
+
 # [0.3.0] - Remove Overlay widget causing huge problems
 * Removed Overlay widget
 * Added test

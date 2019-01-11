@@ -61,7 +61,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   void didChangeDependencies() {
     super.didChangeDependencies();
 
-    activeIcon = widget.tabs[widget.initialSelection].iconData;
+    activeIcon = widget.tabs[currentSelected].iconData;
 
     circleColor = (widget.circleColor == null)
         ? (Theme.of(context).brightness == Brightness.dark)
