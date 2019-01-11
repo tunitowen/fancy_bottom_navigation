@@ -9,7 +9,7 @@ Add the plugin (pub coming soon):
 ```yaml
 dependencies:
   ...
-  fancy_bottom_navigation: ^0.3.0
+  fancy_bottom_navigation: ^0.3.1
 ```
 
 ## Limitations
