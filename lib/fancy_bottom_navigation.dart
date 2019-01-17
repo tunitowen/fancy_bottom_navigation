@@ -154,39 +154,41 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                 padding: const EdgeInsets.only(bottom: 15),
                 child: FractionallySizedBox(
                   widthFactor: 1 / widget.tabs.length,
-                  child: Stack(
-                    alignment: Alignment.center,
-                    children: <Widget>[
-                      SizedBox(
-                        height: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                        width: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                        child: ClipRect(
-                            clipper: HalfClipper(),
-                            child: Container(
-                              child: Center(
-                                child: Container(
-                                    width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                    height: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                    decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                              color: Colors.black12,
-                                              blurRadius: 8)
-                                        ])),
-                              ),
+                  child: GestureDetector(
+                    onTap: widget.tabs[currentSelected].onclick,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: <Widget>[
+                        SizedBox(
+                          height:
+                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                          width:
+                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                          child: ClipRect(
+                              clipper: HalfClipper(),
+                              child: Container(
+                                child: Center(
+                                  child: Container(
+                                      width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                      height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                      decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          shape: BoxShape.circle,
+                                          boxShadow: [
+                                            BoxShadow(
+                                                color: Colors.black12,
+                                                blurRadius: 8)
+                                          ])),
+                                ),
+                              )),
+                        ),
+                        SizedBox(
+                            height: ARC_HEIGHT,
+                            width: ARC_WIDTH,
+                            child: CustomPaint(
+                              painter: HalfPainter(barBackgroundColor),
                             )),
-                      ),
-                      SizedBox(
-                          height: ARC_HEIGHT,
-                          width: ARC_WIDTH,
-                          child: CustomPaint(
-                            painter: HalfPainter(barBackgroundColor),
-                          )),
-                      GestureDetector(
-                        onTap: widget.tabs[currentSelected].onclick,
-                        child: SizedBox(
+                        SizedBox(
                           height: CIRCLE_SIZE,
                           width: CIRCLE_SIZE,
                           child: Container(
@@ -205,9 +207,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               ),
                             ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
