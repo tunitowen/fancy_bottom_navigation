@@ -1,9 +1,9 @@
 library fancy_bottom_navigation;
 
-import 'package:flutter/material.dart';
 import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
+import 'package:flutter/material.dart';
 
 const double CIRCLE_SIZE = 60;
 const double ARC_HEIGHT = 70;
@@ -145,49 +145,48 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         ),
         Positioned.fill(
           top: -(CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2,
-          child: IgnorePointer(
-            child: Container(
-              child: AnimatedAlign(
-                duration: Duration(milliseconds: ANIM_DURATION),
-                curve: Curves.easeOut,
-                alignment: Alignment(_circleAlignX, 1),
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: FractionallySizedBox(
-                    widthFactor: 1 / widget.tabs.length,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: <Widget>[
-                        SizedBox(
-                          height:
-                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                          width:
-                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
-                          child: ClipRect(
-                              clipper: HalfClipper(),
-                              child: Container(
-                                child: Center(
-                                  child: Container(
-                                      width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      height: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          shape: BoxShape.circle,
-                                          boxShadow: [
-                                            BoxShadow(
-                                                color: Colors.black12,
-                                                blurRadius: 8)
-                                          ])),
-                                ),
-                              )),
-                        ),
-                        SizedBox(
-                            height: ARC_HEIGHT,
-                            width: ARC_WIDTH,
-                            child: CustomPaint(
-                              painter: HalfPainter(barBackgroundColor),
+          child: Container(
+            child: AnimatedAlign(
+              duration: Duration(milliseconds: ANIM_DURATION),
+              curve: Curves.easeOut,
+              alignment: Alignment(_circleAlignX, 1),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: FractionallySizedBox(
+                  widthFactor: 1 / widget.tabs.length,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: <Widget>[
+                      SizedBox(
+                        height: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                        width: CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                        child: ClipRect(
+                            clipper: HalfClipper(),
+                            child: Container(
+                              child: Center(
+                                child: Container(
+                                    width: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                    height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        shape: BoxShape.circle,
+                                        boxShadow: [
+                                          BoxShadow(
+                                              color: Colors.black12,
+                                              blurRadius: 8)
+                                        ])),
+                              ),
                             )),
-                        SizedBox(
+                      ),
+                      SizedBox(
+                          height: ARC_HEIGHT,
+                          width: ARC_WIDTH,
+                          child: CustomPaint(
+                            painter: HalfPainter(barBackgroundColor),
+                          )),
+                      GestureDetector(
+                        onTap: widget.tabs[currentSelected].onclick,
+                        child: SizedBox(
                           height: CIRCLE_SIZE,
                           width: CIRCLE_SIZE,
                           child: Container(
@@ -206,9 +205,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               ),
                             ),
                           ),
-                        )
-                      ],
-                    ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
               ),
@@ -247,9 +246,10 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 }
 
 class TabData {
-  TabData({@required this.iconData, @required this.title});
+  TabData({@required this.iconData, @required this.title, this.onclick});
 
   IconData iconData;
   String title;
+  Function onclick;
   final UniqueKey key = UniqueKey();
 }
