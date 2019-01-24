@@ -34,8 +34,8 @@ bottomNavigationBar: FancyBottomNavigation(
 ```
 
 ## TabData
-**iconData** -> Icon to be used for the tab
-**title** -> String to be used for the tab
+**iconData** -> Icon to be used for the tab<br/>
+**title** -> String to be used for the tab<br/>
 **onClick** -> Optional function to be used when the circle itself is clicked, on an active tab
 
 ## Attributes
