@@ -1,9 +1,9 @@
 library fancy_bottom_navigation;
 
-import 'package:flutter/material.dart';
 import 'package:fancy_bottom_navigation/internal/tab_item.dart';
 import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
+import 'package:flutter/material.dart';
 
 const double CIRCLE_SIZE = 60;
 const double ARC_HEIGHT = 70;
@@ -145,16 +145,17 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         ),
         Positioned.fill(
           top: -(CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2,
-          child: IgnorePointer(
-            child: Container(
-              child: AnimatedAlign(
-                duration: Duration(milliseconds: ANIM_DURATION),
-                curve: Curves.easeOut,
-                alignment: Alignment(_circleAlignX, 1),
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 15),
-                  child: FractionallySizedBox(
-                    widthFactor: 1 / widget.tabs.length,
+          child: Container(
+            child: AnimatedAlign(
+              duration: Duration(milliseconds: ANIM_DURATION),
+              curve: Curves.easeOut,
+              alignment: Alignment(_circleAlignX, 1),
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 15),
+                child: FractionallySizedBox(
+                  widthFactor: 1 / widget.tabs.length,
+                  child: GestureDetector(
+                    onTap: widget.tabs[currentSelected].onclick,
                     child: Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
@@ -247,9 +248,10 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 }
 
 class TabData {
-  TabData({@required this.iconData, @required this.title});
+  TabData({@required this.iconData, @required this.title, this.onclick});
 
   IconData iconData;
   String title;
+  Function onclick;
   final UniqueKey key = UniqueKey();
 }
