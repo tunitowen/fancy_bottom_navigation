@@ -9,7 +9,7 @@ Add the plugin (pub coming soon):
 ```yaml
 dependencies:
   ...
-  fancy_bottom_navigation: ^0.3.1
+  fancy_bottom_navigation: ^0.3.2
 ```
 
 ## Limitations
@@ -32,6 +32,11 @@ bottomNavigationBar: FancyBottomNavigation(
     },
 )
 ```
+
+## TabData
+**iconData** -> Icon to be used for the tab
+**title** -> String to be used for the tab
+**onClick** -> Optional function to be used when the circle itself is clicked, on an active tab
 
 ## Attributes
 ### required

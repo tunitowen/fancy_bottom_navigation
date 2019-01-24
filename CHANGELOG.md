@@ -1,3 +1,6 @@
+# [0.3.2] - Add optional click to active tab circle
+* Contributed by TheWithz, thanks. The circle can have a click event when active.
+
 # [0.3.1] - Fix wrong icon bug
 * Fixes bug where wrong icon is shown when navigating away and back
 
