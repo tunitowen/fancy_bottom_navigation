@@ -172,7 +172,6 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                                       width: CIRCLE_SIZE + CIRCLE_OUTLINE,
                                       height: CIRCLE_SIZE + CIRCLE_OUTLINE,
                                       decoration: BoxDecoration(
-                                          color: Colors.white,
                                           shape: BoxShape.circle,
                                           boxShadow: [
                                             BoxShadow(
