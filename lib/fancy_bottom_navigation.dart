@@ -56,6 +56,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   Color inactiveIconColor;
   Color barBackgroundColor;
   Color textColor;
+  Color shadowColor;
 
   @override
   void didChangeDependencies() {
@@ -90,6 +91,10 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
             ? Colors.white
             : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
+
+    shadowColor = Theme.of(context).brightness == Brightness.dark 
+      ? Colors.white54
+      : Colors.black12;
   }
 
   @override
@@ -120,7 +125,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
           height: BAR_HEIGHT,
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
-                color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
+                color: shadowColor, offset: Offset(0, -1), blurRadius: 8)
           ]),
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -151,7 +156,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
               curve: Curves.easeOut,
               alignment: Alignment(_circleAlignX, 1),
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 15),
+                padding: const EdgeInsets.only(bottom: 14),
                 child: FractionallySizedBox(
                   widthFactor: 1 / widget.tabs.length,
                   child: GestureDetector(
@@ -176,7 +181,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                                           shape: BoxShape.circle,
                                           boxShadow: [
                                             BoxShadow(
-                                                color: Colors.black12,
+                                                color: shadowColor,
                                                 blurRadius: 8)
                                           ])),
                                 ),
@@ -189,8 +194,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               painter: HalfPainter(barBackgroundColor),
                             )),
                         SizedBox(
-                          height: CIRCLE_SIZE,
-                          width: CIRCLE_SIZE,
+                          height: CIRCLE_SIZE - 5,
+                          width: CIRCLE_SIZE - 5,
                           child: Container(
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle, color: circleColor),

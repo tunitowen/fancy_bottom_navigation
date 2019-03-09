@@ -1,3 +1,8 @@
+# [0.3.3]
+* Improve layout on cellphones with soft navigation buttons
+* Improve shadow color for dark theme.
+* Reduce size of active icon circle size.
+
 # [0.3.2] - Add optional click to active tab circle
 * Contributed by TheWithz, thanks. The circle can have a click event when active.
 
