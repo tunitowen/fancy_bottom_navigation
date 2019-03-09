@@ -11,12 +11,12 @@ const int ANIM_DURATION = 300;
 class TabItem extends StatelessWidget {
   TabItem(
       {@required this.uniqueKey,
-        @required this.selected,
-        @required this.iconData,
-        @required this.title,
-        @required this.callbackFunction,
-        @required this.textColor,
-        @required this.iconColor});
+      @required this.selected,
+      @required this.iconData,
+      @required this.title,
+      @required this.callbackFunction,
+      @required this.textColor,
+      @required this.iconColor});
 
   final UniqueKey uniqueKey;
   final String title;

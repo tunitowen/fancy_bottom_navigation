@@ -92,9 +92,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
             : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
 
-    shadowColor = Theme.of(context).brightness == Brightness.dark 
-      ? Colors.white54
-      : Colors.black12;
+    shadowColor = Theme.of(context).brightness == Brightness.dark
+        ? Colors.white54
+        : Colors.black12;
   }
 
   @override
@@ -124,8 +124,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
         Container(
           height: BAR_HEIGHT,
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
-            BoxShadow(
-                color: shadowColor, offset: Offset(0, -1), blurRadius: 8)
+            BoxShadow(color: shadowColor, offset: Offset(0, -1), blurRadius: 8)
           ]),
           child: Row(
             mainAxisSize: MainAxisSize.max,
