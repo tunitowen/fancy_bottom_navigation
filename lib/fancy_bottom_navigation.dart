@@ -22,6 +22,7 @@ class FancyBottomNavigation extends StatefulWidget {
       this.activeIconColor,
       this.inactiveIconColor,
       this.textColor,
+      this.gradient,
       this.barBackgroundColor})
       : assert(onTabChangedListener != null),
         assert(tabs != null),
@@ -32,6 +33,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color activeIconColor;
   final Color inactiveIconColor;
   final Color textColor;
+  final Gradient gradient;
   final Color barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
@@ -56,6 +58,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   Color inactiveIconColor;
   Color barBackgroundColor;
   Color textColor;
+  
+  Gradient gradient;
 
   @override
   void didChangeDependencies() {
@@ -90,6 +94,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
             ? Colors.white
             : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
+    gradient = widget.gradient;
   }
 
   @override
@@ -118,7 +123,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
       children: <Widget>[
         Container(
           height: BAR_HEIGHT,
-          decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
+          decoration: BoxDecoration(
+            color: barBackgroundColor, 
+            boxShadow: [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
           ]),
@@ -132,6 +139,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     iconData: t.iconData,
                     title: t.title,
                     iconColor: inactiveIconColor,
+                    gradient: this.gradient,
                     textColor: textColor,
                     callbackFunction: (uniqueKey) {
                       int selected = widget.tabs
@@ -193,7 +201,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                           width: CIRCLE_SIZE,
                           child: Container(
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: circleColor),
+                                shape: BoxShape.circle, 
+                                gradient: this.gradient,
+                                color: circleColor),
                             child: Padding(
                               padding: const EdgeInsets.all(0.0),
                               child: AnimatedOpacity(
