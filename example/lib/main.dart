@@ -58,10 +58,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         initialSelection: 1,
         key: bottomNavigationKey,
-        // gradient: LinearGradient(colors: [
-        //   Color.fromRGBO(253, 110, 106, 1),
-        //   Color.fromRGBO(255, 198, 0, 1)
-        // ]), // uncomment this to use gradient
+        gradient: LinearGradient(colors: [
+          Color.fromRGBO(253, 110, 106, 1),
+          Color.fromRGBO(255, 198, 0, 1)
+        ]),
+        // uncomment this to use gradient
         onTabChangedListener: (position) {
           setState(() {
             currentPage = position;
