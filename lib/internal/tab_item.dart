@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'dart:ui' as ui;
+
 const double ICON_OFF = -3;
 const double ICON_ON = 0;
 const double TEXT_OFF = 3;
@@ -16,7 +18,8 @@ class TabItem extends StatelessWidget {
       @required this.title,
       @required this.callbackFunction,
       @required this.textColor,
-      @required this.iconColor});
+      @required this.iconColor,
+      this.gradient});
 
   final UniqueKey uniqueKey;
   final String title;
@@ -25,6 +28,7 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
+  final Gradient gradient;
 
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
@@ -68,10 +72,22 @@ class TabItem extends StatelessWidget {
                   splashColor: Colors.transparent,
                   padding: EdgeInsets.all(0),
                   alignment: Alignment(0, 0),
-                  icon: Icon(
-                    iconData,
-                    color: iconColor,
-                  ),
+                  icon: this.gradient != null
+                      ? ShaderMask(
+                          blendMode: BlendMode.srcIn,
+                          shaderCallback: (Rect bounds) {
+                            return ui.Gradient.linear(
+                              Offset(4.0, 24.0),
+                              Offset(24.0, 4.0),
+                              this.gradient.colors
+                            );
+                          },
+                          child: Icon(iconData),
+                        )
+                      : Icon(
+                          iconData,
+                          color: iconColor,
+                        ),
                   onPressed: () {
                     callbackFunction(uniqueKey);
                   },

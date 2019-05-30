@@ -22,6 +22,7 @@ class FancyBottomNavigation extends StatefulWidget {
       this.activeIconColor,
       this.inactiveIconColor,
       this.textColor,
+      this.gradient,
       this.barBackgroundColor})
       : assert(onTabChangedListener != null),
         assert(tabs != null),
@@ -32,6 +33,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color activeIconColor;
   final Color inactiveIconColor;
   final Color textColor;
+  final Gradient gradient;
   final Color barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
@@ -56,6 +58,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   Color inactiveIconColor;
   Color barBackgroundColor;
   Color textColor;
+  Gradient gradient;
   Color shadowColor;
 
   @override
@@ -91,7 +94,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
             ? Colors.white
             : Theme.of(context).primaryColor
         : widget.inactiveIconColor;
-
+    gradient = widget.gradient;
     shadowColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.white54
         : Colors.black12;
@@ -136,6 +139,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     iconData: t.iconData,
                     title: t.title,
                     iconColor: inactiveIconColor,
+                    gradient: this.gradient,
                     textColor: textColor,
                     callbackFunction: (uniqueKey) {
                       int selected = widget.tabs
@@ -196,7 +200,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                           width: CIRCLE_SIZE - 5,
                           child: Container(
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle, color: circleColor),
+                                shape: BoxShape.circle, 
+                                gradient: this.gradient,
+                                color: circleColor),
                             child: Padding(
                               padding: const EdgeInsets.all(0.0),
                               child: AnimatedOpacity(
