@@ -62,6 +62,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   Color textColor;
   Gradient gradient;
   Color shadowColor;
+  Function() _pageControllerListener;
 
   @override
   void didChangeDependencies() {
@@ -109,8 +110,9 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 
     // add listener for page swipes
     if (this.widget.pageController != null) {
-      this.widget.pageController.addListener(
-          () => this.setPageOffset(this.widget.pageController.page));
+      _pageControllerListener =
+          () => this.setPageOffset(this.widget.pageController.page);
+      this.widget.pageController.addListener(_pageControllerListener);
     }
   }
 
@@ -254,19 +256,20 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 
   void setPage(int page) {
     if (widget.pageController != null) {
-      // if the pageController is available: animate a page slide to the index
+      widget.pageController.removeListener(_pageControllerListener);
       widget.pageController.animateToPage(page,
-          // we have to subtract 1 of the animation duration otherwise it causes a lag *§§*
-          duration: Duration(milliseconds: ANIM_DURATION - 1),
+          duration: Duration(milliseconds: ANIM_DURATION),
           curve: Curves.easeOut);
-      // *§§* and set the current state 1 millisecond later
-      Future.delayed(Duration(milliseconds: 1), () {
-        _setSelected(widget.tabs[page].key);
-        _initAnimationAndStart(0);
 
-        setState(() {
-          currentSelected = page;
-        });
+      Future.delayed(Duration(milliseconds: (ANIM_DURATION)), () {
+        widget.pageController.addListener(_pageControllerListener);
+      });
+
+      _setSelected(widget.tabs[page].key);
+      _initAnimationAndStart(0);
+
+      setState(() {
+        currentSelected = page;
       });
     } else {
       widget.onTabChangedListener(page);
