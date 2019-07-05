@@ -23,9 +23,21 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentPage = 0;
-
   GlobalKey bottomNavigationKey = GlobalKey();
+
+  PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,13 +45,12 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text("Fancy Bottom Navigation"),
       ),
-      body: Container(
-        decoration: BoxDecoration(color: Colors.white),
-        child: Center(
-          child: _getPage(currentPage),
-        ),
+      body: PageView(
+        controller: _pageController,
+        children: <Widget>[_getPage(0), _getPage(1), _getPage(2)],
       ),
       bottomNavigationBar: FancyBottomNavigation(
+        pageController: _pageController,
         tabs: [
           TabData(
               iconData: Icons.home,
@@ -58,11 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         initialSelection: 1,
         key: bottomNavigationKey,
-        onTabChangedListener: (position) {
-          setState(() {
-            currentPage = position;
-          });
-        },
       ),
       drawer: Drawer(
         child: ListView(
