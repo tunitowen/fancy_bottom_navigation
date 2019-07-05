@@ -15,7 +15,7 @@ const double BAR_HEIGHT = 60;
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
-      @required this.onTabChangedListener,
+      this.onTabChangedListener,
       this.key,
       this.initialSelection = 0,
       this.circleColor,
@@ -23,8 +23,9 @@ class FancyBottomNavigation extends StatefulWidget {
       this.inactiveIconColor,
       this.textColor,
       this.gradient,
-      this.barBackgroundColor})
-      : assert(onTabChangedListener != null),
+      this.barBackgroundColor,
+      this.pageController})
+      : assert(onTabChangedListener != null || pageController != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
 
@@ -37,6 +38,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
+  final PageController pageController;
 
   final Key key;
 
@@ -104,6 +106,12 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   void initState() {
     super.initState();
     _setSelected(widget.tabs[widget.initialSelection].key);
+
+    // add listener for page swipes
+    if (this.widget.pageController != null) {
+      this.widget.pageController.addListener(
+          () => this.setPageOffset(this.widget.pageController.page));
+    }
   }
 
   _setSelected(UniqueKey key) {
@@ -144,9 +152,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     callbackFunction: (uniqueKey) {
                       int selected = widget.tabs
                           .indexWhere((tabData) => tabData.key == uniqueKey);
-                      widget.onTabChangedListener(selected);
-                      _setSelected(uniqueKey);
-                      _initAnimationAndStart(_circleAlignX, 1);
+
+                      setPage(selected);
                     }))
                 .toList(),
           ),
@@ -200,7 +207,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                           width: CIRCLE_SIZE - 5,
                           child: Container(
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle, 
+                                shape: BoxShape.circle,
                                 gradient: this.gradient,
                                 color: circleColor),
                             child: Padding(
@@ -229,8 +236,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
     );
   }
 
-  _initAnimationAndStart(double from, double to) {
-    _circleIconAlpha = 0;
+  _initAnimationAndStart(double initialAlphaValue) {
+    _circleIconAlpha = initialAlphaValue;
 
     Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
       setState(() {
@@ -246,12 +253,39 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   }
 
   void setPage(int page) {
-    widget.onTabChangedListener(page);
-    _setSelected(widget.tabs[page].key);
-    _initAnimationAndStart(_circleAlignX, 1);
+    if (widget.pageController != null) {
+      // if the pageController is available: animate a page slide to the index
+      widget.pageController.animateToPage(page,
+          // we have to subtract 1 of the animation duration otherwise it causes a lag *§§*
+          duration: Duration(milliseconds: ANIM_DURATION - 1),
+          curve: Curves.easeOut);
+      // *§§* and set the current state 1 millisecond later
+      Future.delayed(Duration(milliseconds: 1), () {
+        _setSelected(widget.tabs[page].key);
+        _initAnimationAndStart(0);
+
+        setState(() {
+          currentSelected = page;
+        });
+      });
+    } else {
+      widget.onTabChangedListener(page);
+
+      _setSelected(widget.tabs[page].key);
+      _initAnimationAndStart(0);
+
+      setState(() {
+        currentSelected = page;
+      });
+    }
+  }
+
+  void setPageOffset(double page) {
+    _setSelected(widget.tabs[page.round()].key);
+    _initAnimationAndStart(1);
 
     setState(() {
-      currentSelected = page;
+      currentSelected = page.round();
     });
   }
 }

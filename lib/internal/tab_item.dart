@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
-
 import 'dart:ui' as ui;
+
+import 'package:flutter/material.dart';
 
 const double ICON_OFF = -3;
 const double ICON_ON = 0;
@@ -76,11 +76,8 @@ class TabItem extends StatelessWidget {
                       ? ShaderMask(
                           blendMode: BlendMode.srcIn,
                           shaderCallback: (Rect bounds) {
-                            return ui.Gradient.linear(
-                              Offset(4.0, 24.0),
-                              Offset(24.0, 4.0),
-                              this.gradient.colors
-                            );
+                            return ui.Gradient.linear(Offset(4.0, 24.0),
+                                Offset(24.0, 4.0), this.gradient.colors);
                           },
                           child: Icon(iconData),
                         )
