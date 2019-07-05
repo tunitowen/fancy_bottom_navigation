@@ -47,7 +47,11 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: PageView(
         controller: _pageController,
-        children: <Widget>[_getPage(0), _getPage(1), _getPage(2)],
+        children: <Widget>[
+          _getPage(0),
+          _getPage(1),
+          _getPage(2),
+        ],
       ),
       bottomNavigationBar: FancyBottomNavigation(
         pageController: _pageController,
@@ -65,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: "Search",
               onclick: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (context) => SecondPage()))),
-          TabData(iconData: Icons.shopping_cart, title: "Basket")
+          TabData(iconData: Icons.shopping_cart, title: "Basket"),
         ],
         initialSelection: 1,
         key: bottomNavigationKey,

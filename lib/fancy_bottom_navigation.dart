@@ -257,20 +257,20 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   void setPage(int page) {
     if (widget.pageController != null) {
       widget.pageController.removeListener(_pageControllerListener);
-      widget.pageController.animateToPage(page,
+      var f = widget.pageController.animateToPage(page,
           duration: Duration(milliseconds: ANIM_DURATION),
           curve: Curves.easeOut);
 
-      Future.delayed(Duration(milliseconds: (ANIM_DURATION)), () {
-        widget.pageController.addListener(_pageControllerListener);
+      f.then((v) {
+        // be shure that listener is added only one times
+        // ignore: INVALID_USE_OF_PROTECTED_MEMBER
+        if (!widget.pageController.hasListeners) {
+          widget.pageController.addListener(_pageControllerListener);
+        }
       });
 
       _setSelected(widget.tabs[page].key);
       _initAnimationAndStart(0);
-
-      setState(() {
-        currentSelected = page;
-      });
     } else {
       widget.onTabChangedListener(page);
 
@@ -284,6 +284,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   }
 
   void setPageOffset(double page) {
+    print("$page");
     _setSelected(widget.tabs[page.round()].key);
     _initAnimationAndStart(1);
 
