@@ -10,20 +10,22 @@ const double ARC_HEIGHT = 70;
 const double ARC_WIDTH = 90;
 const double CIRCLE_OUTLINE = 10;
 const double SHADOW_ALLOWANCE = 20;
-const double BAR_HEIGHT = 60;
 
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
-      {@required this.tabs,
-      @required this.onTabChangedListener,
-      this.key,
-      this.initialSelection = 0,
-      this.circleColor,
-      this.activeIconColor,
-      this.inactiveIconColor,
-      this.textColor,
-      this.gradient,
-      this.barBackgroundColor})
+      {
+        @required this.tabs,
+        @required this.onTabChangedListener,
+        this.key,
+        this.initialSelection = 0,
+        this.circleColor,
+        this.activeIconColor,
+        this.inactiveIconColor,
+        this.textColor,
+        this.gradient,
+        this.barBackgroundColor,
+        this.barHeight = 60
+      })
       : assert(onTabChangedListener != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
@@ -35,6 +37,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color textColor;
   final Gradient gradient;
   final Color barBackgroundColor;
+  final double barHeight;
   final List<TabData> tabs;
   final int initialSelection;
 
@@ -125,7 +128,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
       alignment: Alignment.bottomCenter,
       children: <Widget>[
         Container(
-          height: BAR_HEIGHT,
+          height: widget.barHeight,
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(color: shadowColor, offset: Offset(0, -1), blurRadius: 8)
           ]),
