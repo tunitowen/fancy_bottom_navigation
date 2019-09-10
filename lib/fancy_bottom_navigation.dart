@@ -24,8 +24,7 @@ class FancyBottomNavigation extends StatefulWidget {
       this.textColor,
       this.barBackgroundColor})
       : assert(onTabChangedListener != null),
-        assert(tabs != null),
-        assert(tabs.length > 1 && tabs.length < 5);
+        assert(tabs != null);
 
   final Function(int position) onTabChangedListener;
   final Color circleColor;
