@@ -5,13 +5,6 @@ import 'package:fancy_bottom_navigation/paint/half_clipper.dart';
 import 'package:fancy_bottom_navigation/paint/half_painter.dart';
 import 'package:flutter/material.dart';
 
-const double CIRCLE_SIZE = 60;
-const double ARC_HEIGHT = 70;
-const double ARC_WIDTH = 90;
-const double CIRCLE_OUTLINE = 10;
-const double SHADOW_ALLOWANCE = 20;
-const double BAR_HEIGHT = 60;
-
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
@@ -22,7 +15,13 @@ class FancyBottomNavigation extends StatefulWidget {
       this.activeIconColor,
       this.inactiveIconColor,
       this.textColor,
-      this.barBackgroundColor})
+      this.barBackgroundColor,
+      this.circleSize = 60,
+      this.barHeight = 60,
+      this.arcHeight = 70,
+      this.arcWidth = 90,
+      this.circleOutline = 10,
+      this.shadowAllowance = 20})
       : assert(onTabChangedListener != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
@@ -35,6 +34,12 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
+  final double circleSize;
+  final double barHeight;
+  final double arcHeight;
+  final double arcWidth;
+  final double circleOutline;
+  final double shadowAllowance;
 
   final Key key;
 
@@ -117,7 +122,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
       alignment: Alignment.bottomCenter,
       children: <Widget>[
         Container(
-          height: BAR_HEIGHT,
+          height: this.widget.barHeight,
           decoration: BoxDecoration(color: barBackgroundColor, boxShadow: [
             BoxShadow(
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
@@ -144,7 +149,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
           ),
         ),
         Positioned.fill(
-          top: -(CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2,
+          top: -(this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance) / 2,
           child: Container(
             child: AnimatedAlign(
               duration: Duration(milliseconds: ANIM_DURATION),
@@ -161,16 +166,16 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                       children: <Widget>[
                         SizedBox(
                           height:
-                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                              this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance,
                           width:
-                              CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE,
+                              this.widget.circleSize + this.widget.circleOutline + this.widget.shadowAllowance,
                           child: ClipRect(
                               clipper: HalfClipper(),
                               child: Container(
                                 child: Center(
                                   child: Container(
-                                      width: CIRCLE_SIZE + CIRCLE_OUTLINE,
-                                      height: CIRCLE_SIZE + CIRCLE_OUTLINE,
+                                      width: this.widget.circleSize + this.widget.circleOutline,
+                                      height: this.widget.circleSize + this.widget.circleOutline,
                                       decoration: BoxDecoration(
                                           color: Colors.white,
                                           shape: BoxShape.circle,
@@ -183,14 +188,14 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               )),
                         ),
                         SizedBox(
-                            height: ARC_HEIGHT,
-                            width: ARC_WIDTH,
+                            height: this.widget.arcHeight,
+                            width: this.widget.arcWidth,
                             child: CustomPaint(
                               painter: HalfPainter(barBackgroundColor),
                             )),
                         SizedBox(
-                          height: CIRCLE_SIZE,
-                          width: CIRCLE_SIZE,
+                          height: this.widget.circleSize,
+                          width: this.widget.circleSize,
                           child: Container(
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle, color: circleColor),
