@@ -8,6 +8,7 @@ build/
 ios/.generated/
 ios/Flutter/Generated.xcconfig
 ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Flutter/flutter_export_environment.sh
 
 
 # Created by https://www.gitignore.io/api/java,xcode,swift,kotlin,flutter,intellij,objective-c,androidstudio,visualstudiocode

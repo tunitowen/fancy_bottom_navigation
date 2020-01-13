@@ -11,12 +11,12 @@ const int ANIM_DURATION = 300;
 class TabItem extends StatelessWidget {
   TabItem(
       {@required this.uniqueKey,
-        @required this.selected,
-        @required this.iconData,
-        @required this.title,
-        @required this.callbackFunction,
-        @required this.textColor,
-        @required this.iconColor});
+      @required this.selected,
+      @required this.iconData,
+      @required this.title,
+      @required this.callbackFunction,
+      @required this.textColor,
+      @required this.iconColor});
 
   final UniqueKey uniqueKey;
   final String title;
@@ -44,12 +44,22 @@ class TabItem extends StatelessWidget {
                 alignment: Alignment(0, (selected) ? TEXT_ON : TEXT_OFF),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, color: textColor),
+                  child: AnimatedDefaultTextStyle(
+                    duration: Duration(milliseconds: ANIM_DURATION),
+                    style: selected
+                        ? TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: textColor,
+                          )
+                        : TextStyle(
+                            fontWeight: FontWeight.w600,
+                            color: Colors.transparent,
+                          ),
+                    child: Text(
+                      title,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
                   ),
                 )),
           ),
