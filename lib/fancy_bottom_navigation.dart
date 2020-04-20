@@ -123,6 +123,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                 color: Colors.black12, offset: Offset(0, -1), blurRadius: 8)
           ]),
           child: Row(
+            textDirection: TextDirection.ltr,
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: widget.tabs
