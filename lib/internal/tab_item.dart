@@ -16,6 +16,7 @@ class TabItem extends StatelessWidget {
         @required this.title,
         @required this.callbackFunction,
         @required this.textColor,
+        this.customStyle,
         @required this.iconColor});
 
   final UniqueKey uniqueKey;
@@ -25,6 +26,7 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
+  final TextStyle customStyle;
 
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
@@ -48,7 +50,7 @@ class TabItem extends StatelessWidget {
                     title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: customStyle ?? TextStyle(
                         fontWeight: FontWeight.w600, color: textColor),
                   ),
                 )),
