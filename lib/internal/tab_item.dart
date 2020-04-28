@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const double ICON_OFF = -3;
 const double ICON_ON = 0;
-const double TEXT_OFF = 3;
+const double TEXT_OFF = 5;
 const double TEXT_ON = 1;
 const double ALPHA_OFF = 0;
 const double ALPHA_ON = 1;
@@ -16,6 +16,7 @@ class TabItem extends StatelessWidget {
         @required this.title,
         @required this.callbackFunction,
         @required this.textColor,
+        this.customStyle,
         @required this.iconColor});
 
   final UniqueKey uniqueKey;
@@ -25,6 +26,7 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
+  final TextStyle customStyle;
 
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
@@ -48,7 +50,7 @@ class TabItem extends StatelessWidget {
                     title,
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: customStyle ?? TextStyle(
                         fontWeight: FontWeight.w600, color: textColor),
                   ),
                 )),
