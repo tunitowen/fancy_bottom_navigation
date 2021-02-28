@@ -14,8 +14,8 @@ const double BAR_HEIGHT = 60;
 
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
-      {@required this.tabs,
-      @required this.onTabChangedListener,
+      {required this.tabs,
+      required this.onTabChangedListener,
       this.key,
       this.initialSelection = 0,
       this.circleColor,
@@ -28,15 +28,15 @@ class FancyBottomNavigation extends StatefulWidget {
         assert(tabs.length > 1 && tabs.length < 5);
 
   final Function(int position) onTabChangedListener;
-  final Color circleColor;
-  final Color activeIconColor;
-  final Color inactiveIconColor;
-  final Color textColor;
-  final Color barBackgroundColor;
+  final Color? circleColor;
+  final Color? activeIconColor;
+  final Color? inactiveIconColor;
+  final Color? textColor;
+  final Color? barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
 
-  final Key key;
+  final Key? key;
 
   @override
   FancyBottomNavigationState createState() => FancyBottomNavigationState();
@@ -51,11 +51,11 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   double _circleAlignX = 0;
   double _circleIconAlpha = 1;
 
-  Color circleColor;
-  Color activeIconColor;
-  Color inactiveIconColor;
-  Color barBackgroundColor;
-  Color textColor;
+  late Color circleColor;
+  late Color activeIconColor;
+  late Color inactiveIconColor;
+  late Color barBackgroundColor;
+  late Color textColor;
 
   @override
   void didChangeDependencies() {
@@ -63,33 +63,28 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 
     activeIcon = widget.tabs[currentSelected].iconData;
 
-    circleColor = (widget.circleColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
+    circleColor = widget.circleColor ??
+        ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.white
-            : Theme.of(context).primaryColor
-        : widget.circleColor;
+            : Theme.of(context).primaryColor);
 
-    activeIconColor = (widget.activeIconColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
+    activeIconColor = widget.activeIconColor ??
+        ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.black54
-            : Colors.white
-        : widget.activeIconColor;
+            : Colors.white);
 
-    barBackgroundColor = (widget.barBackgroundColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
+    barBackgroundColor = widget.barBackgroundColor ??
+        ((Theme.of(context).brightness == Brightness.dark)
             ? Color(0xFF212121)
-            : Colors.white
-        : widget.barBackgroundColor;
-    textColor = (widget.textColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
+            : Colors.white);
+    textColor = widget.textColor ??
+        ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.white
-            : Colors.black54
-        : widget.textColor;
-    inactiveIconColor = (widget.inactiveIconColor == null)
-        ? (Theme.of(context).brightness == Brightness.dark)
+            : Colors.black54);
+    inactiveIconColor = (widget.inactiveIconColor) ??
+        ((Theme.of(context).brightness == Brightness.dark)
             ? Colors.white
-            : Theme.of(context).primaryColor
-        : widget.inactiveIconColor;
+            : Theme.of(context).primaryColor);
   }
 
   @override
@@ -155,7 +150,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                 child: FractionallySizedBox(
                   widthFactor: 1 / widget.tabs.length,
                   child: GestureDetector(
-                    onTap: widget.tabs[currentSelected].onclick,
+                    onTap: widget.tabs[currentSelected].onclick as void
+                        Function()?,
                     child: Stack(
                       alignment: Alignment.center,
                       children: <Widget>[
@@ -248,10 +244,10 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 }
 
 class TabData {
-  TabData({@required this.iconData, @required this.title, this.onclick});
+  TabData({required this.iconData, required this.title, this.onclick});
 
   IconData iconData;
   String title;
-  Function onclick;
+  Function? onclick;
   final UniqueKey key = UniqueKey();
 }

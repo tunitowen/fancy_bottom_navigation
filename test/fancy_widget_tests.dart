@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  Widget makeTestableWidget({Widget child}) {
+  Widget makeTestableWidget({required Widget child}) {
     return MaterialApp(
         theme: ThemeData(primaryColor: Colors.pink,
         brightness: Brightness.light),
