@@ -1,3 +1,6 @@
+# [0.3.3] - Null safety
+* Contributed by rkishan516, thanks. Updates the lib for null safety
+
 # [0.3.2] - Add optional click to active tab circle
 * Contributed by TheWithz, thanks. The circle can have a click event when active.
 
