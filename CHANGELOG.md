@@ -1,9 +1,5 @@
-# [0.3.3]
-* Update Dart-SDK
-* Improve layout on cellphones with soft navigation buttons
-* Improve shadow color for dark theme.
-* Reduce size of active icon circle size.
-* Formatting package files as suggested on https://pub.dartlang.org
+# [0.3.3] - Null safety
+* Contributed by rkishan516, thanks. Updates the lib for null safety
 
 # [0.3.2] - Add optional click to active tab circle
 * Contributed by TheWithz, thanks. The circle can have a click event when active.

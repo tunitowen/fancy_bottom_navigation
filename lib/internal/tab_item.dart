@@ -12,13 +12,13 @@ const int ANIM_DURATION = 300;
 
 class TabItem extends StatelessWidget {
   TabItem(
-      {@required this.uniqueKey,
-      @required this.selected,
-      @required this.iconData,
-      @required this.title,
-      @required this.callbackFunction,
-      @required this.textColor,
-      @required this.iconColor,
+      {required this.uniqueKey,
+      required this.selected,
+      required this.iconData,
+      required this.title,
+      required this.callbackFunction,
+      required this.textColor,
+      required this.iconColor,
       this.gradient});
 
   final UniqueKey uniqueKey;
@@ -28,7 +28,7 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
-  final Gradient gradient;
+  final Gradient? gradient;
 
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
@@ -77,7 +77,7 @@ class TabItem extends StatelessWidget {
                           blendMode: BlendMode.srcIn,
                           shaderCallback: (Rect bounds) {
                             return ui.Gradient.linear(Offset(4.0, 24.0),
-                                Offset(24.0, 4.0), this.gradient.colors);
+                                Offset(24.0, 4.0), this.gradient?.colors ?? []);
                           },
                           child: Icon(iconData),
                         )

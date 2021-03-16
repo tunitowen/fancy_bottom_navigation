@@ -48,7 +48,7 @@ bottomNavigationBar: FancyBottomNavigation(
 **circleColor** -> Defaults to null, derives from `Theme`<br/>
 **activeIconColor** -> Defaults to null, derives from `Theme`<br/>
 **inactiveIconColor** -> Defaults to null, derives from `Theme`<br/>
-**taxtColor** -> Defaults to null, derives from `Theme`<br/>
+**textColor** -> Defaults to null, derives from `Theme`<br/>
 **barBackgroundColor** -> Defaults to null, derives from `Theme`<br/>
 **gradient** -> Defaults to null, this will disable inactiveIconColor and circleColor<br/>
 **key** -> Defaults to null<br/>

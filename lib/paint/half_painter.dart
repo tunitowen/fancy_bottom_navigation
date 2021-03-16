@@ -6,7 +6,7 @@ class HalfPainter extends CustomPainter {
     this.arcPaint = Paint()..color = paintColor;
   }
 
-  Paint arcPaint;
+  late Paint arcPaint;
 
   @override
   void paint(Canvas canvas, Size size) {
