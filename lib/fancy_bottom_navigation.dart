@@ -15,7 +15,7 @@ const double BAR_HEIGHT = 60;
 class FancyBottomNavigation extends StatefulWidget {
   FancyBottomNavigation(
       {@required this.tabs,
-      @required this.onTabChangedListener,
+      this.onTabChangedListener,
       this.key,
       this.initialSelection = 0,
       this.circleColor,
@@ -23,8 +23,9 @@ class FancyBottomNavigation extends StatefulWidget {
       this.inactiveIconColor,
       this.textColor,
       this.gradient,
-      this.barBackgroundColor})
-      : assert(onTabChangedListener != null),
+      this.barBackgroundColor,
+      this.pageController})
+      : assert(onTabChangedListener != null || pageController != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
 
@@ -37,6 +38,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
+  final PageController pageController;
 
   final Key key;
 
@@ -60,6 +62,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   Color textColor;
   Gradient gradient;
   Color shadowColor;
+  Function() _pageControllerListener;
 
   @override
   void didChangeDependencies() {
@@ -104,6 +107,13 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   void initState() {
     super.initState();
     _setSelected(widget.tabs[widget.initialSelection].key);
+
+    // add listener for page swipes
+    if (this.widget.pageController != null) {
+      _pageControllerListener =
+          () => this.setPageOffset(this.widget.pageController.page);
+      this.widget.pageController.addListener(_pageControllerListener);
+    }
   }
 
   _setSelected(UniqueKey key) {
@@ -144,9 +154,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     callbackFunction: (uniqueKey) {
                       int selected = widget.tabs
                           .indexWhere((tabData) => tabData.key == uniqueKey);
-                      widget.onTabChangedListener(selected);
-                      _setSelected(uniqueKey);
-                      _initAnimationAndStart(_circleAlignX, 1);
+
+                      setPage(selected);
                     }))
                 .toList(),
           ),
@@ -200,7 +209,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                           width: CIRCLE_SIZE - 5,
                           child: Container(
                             decoration: BoxDecoration(
-                                shape: BoxShape.circle, 
+                                shape: BoxShape.circle,
                                 gradient: this.gradient,
                                 color: circleColor),
                             child: Padding(
@@ -229,8 +238,8 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
     );
   }
 
-  _initAnimationAndStart(double from, double to) {
-    _circleIconAlpha = 0;
+  _initAnimationAndStart(double initialAlphaValue) {
+    _circleIconAlpha = initialAlphaValue;
 
     Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
       setState(() {
@@ -246,12 +255,41 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   }
 
   void setPage(int page) {
-    widget.onTabChangedListener(page);
-    _setSelected(widget.tabs[page].key);
-    _initAnimationAndStart(_circleAlignX, 1);
+    if (widget.pageController != null) {
+      widget.pageController.removeListener(_pageControllerListener);
+      var f = widget.pageController.animateToPage(page,
+          duration: Duration(milliseconds: ANIM_DURATION),
+          curve: Curves.easeOut);
+
+      f.then((v) {
+        // be shure that listener is added only one times
+        // ignore: INVALID_USE_OF_PROTECTED_MEMBER
+        if (!widget.pageController.hasListeners) {
+          widget.pageController.addListener(_pageControllerListener);
+        }
+      });
+
+      _setSelected(widget.tabs[page].key);
+      _initAnimationAndStart(0);
+    } else {
+      widget.onTabChangedListener(page);
+
+      _setSelected(widget.tabs[page].key);
+      _initAnimationAndStart(0);
+
+      setState(() {
+        currentSelected = page;
+      });
+    }
+  }
+
+  void setPageOffset(double page) {
+    print("$page");
+    _setSelected(widget.tabs[page.round()].key);
+    _initAnimationAndStart(1);
 
     setState(() {
-      currentSelected = page;
+      currentSelected = page.round();
     });
   }
 }
