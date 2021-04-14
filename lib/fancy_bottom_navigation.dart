@@ -246,7 +246,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
 class TabData {
   TabData({required this.iconData, required this.title, this.onclick});
 
-  IconData iconData;
+  Widget iconData;
   String title;
   Function? onclick;
   final UniqueKey key = UniqueKey();
