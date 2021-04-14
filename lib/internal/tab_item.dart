@@ -20,7 +20,7 @@ class TabItem extends StatelessWidget {
 
   final UniqueKey uniqueKey;
   final String title;
-  final IconData iconData;
+  final Widget iconData;
   final bool selected;
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
