@@ -6,7 +6,6 @@ const double TEXT_OFF = 3;
 const double TEXT_ON = 1;
 const double ALPHA_OFF = 0;
 const double ALPHA_ON = 1;
-const int ANIM_DURATION = 300;
 
 class TabItem extends StatelessWidget {
   TabItem(
@@ -16,7 +15,8 @@ class TabItem extends StatelessWidget {
       required this.title,
       required this.callbackFunction,
       required this.textColor,
-      required this.iconColor});
+      required this.iconColor,
+      this.animationDuration = 300});
 
   final UniqueKey uniqueKey;
   final String title;
@@ -25,6 +25,7 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
+  final int animationDuration;
 
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
@@ -40,7 +41,7 @@ class TabItem extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             child: AnimatedAlign(
-                duration: Duration(milliseconds: ANIM_DURATION),
+                duration: Duration(milliseconds: animationDuration),
                 alignment: Alignment(0, (selected) ? TEXT_ON : TEXT_OFF),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -57,11 +58,11 @@ class TabItem extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             child: AnimatedAlign(
-              duration: Duration(milliseconds: ANIM_DURATION),
+              duration: Duration(milliseconds: animationDuration),
               curve: Curves.easeIn,
               alignment: Alignment(0, (selected) ? ICON_OFF : ICON_ON),
               child: AnimatedOpacity(
-                duration: Duration(milliseconds: ANIM_DURATION),
+                duration: Duration(milliseconds: animationDuration),
                 opacity: (selected) ? ALPHA_OFF : ALPHA_ON,
                 child: IconButton(
                   highlightColor: Colors.transparent,
