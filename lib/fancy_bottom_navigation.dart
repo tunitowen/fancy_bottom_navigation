@@ -22,7 +22,8 @@ class FancyBottomNavigation extends StatefulWidget {
       this.activeIconColor,
       this.inactiveIconColor,
       this.textColor,
-      this.barBackgroundColor})
+      this.barBackgroundColor,
+      this.animationDuration = 300})
       : assert(onTabChangedListener != null),
         assert(tabs != null),
         assert(tabs.length > 1 && tabs.length < 5);
@@ -35,6 +36,7 @@ class FancyBottomNavigation extends StatefulWidget {
   final Color? barBackgroundColor;
   final List<TabData> tabs;
   final int initialSelection;
+  final int animationDuration;
 
   final Key? key;
 
@@ -128,6 +130,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                     title: t.title,
                     iconColor: inactiveIconColor,
                     textColor: textColor,
+                    animationDuration: widget.animationDuration,
                     callbackFunction: (uniqueKey) {
                       int selected = widget.tabs
                           .indexWhere((tabData) => tabData.key == uniqueKey);
@@ -142,7 +145,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
           top: -(CIRCLE_SIZE + CIRCLE_OUTLINE + SHADOW_ALLOWANCE) / 2,
           child: Container(
             child: AnimatedAlign(
-              duration: Duration(milliseconds: ANIM_DURATION),
+              duration: Duration(milliseconds: widget.animationDuration),
               curve: Curves.easeOut,
               alignment: Alignment(_circleAlignX, 1),
               child: Padding(
@@ -194,7 +197,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
                               padding: const EdgeInsets.all(0.0),
                               child: AnimatedOpacity(
                                 duration:
-                                    Duration(milliseconds: ANIM_DURATION ~/ 5),
+                                    Duration(milliseconds: widget.animationDuration ~/ 5),
                                 opacity: _circleIconAlpha,
                                 child: Icon(
                                   activeIcon,
@@ -219,12 +222,12 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   _initAnimationAndStart(double from, double to) {
     _circleIconAlpha = 0;
 
-    Future.delayed(Duration(milliseconds: ANIM_DURATION ~/ 5), () {
+    Future.delayed(Duration(milliseconds: widget.animationDuration ~/ 5), () {
       setState(() {
         activeIcon = nextIcon;
       });
     }).then((_) {
-      Future.delayed(Duration(milliseconds: (ANIM_DURATION ~/ 5 * 3)), () {
+      Future.delayed(Duration(milliseconds: (widget.animationDuration ~/ 5 * 3)), () {
         setState(() {
           _circleIconAlpha = 1;
         });
