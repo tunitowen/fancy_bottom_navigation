@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 const double ICON_OFF = -3;
 const double ICON_ON = 0;
-const double TEXT_OFF = 3;
 const double TEXT_ON = 1;
 const double ALPHA_OFF = 0;
 const double ALPHA_ON = 1;
@@ -16,7 +15,8 @@ class TabItem extends StatelessWidget {
       required this.title,
       required this.callbackFunction,
       required this.textColor,
-      required this.iconColor});
+      required this.iconColor,
+      required this.fontSize});
 
   final UniqueKey uniqueKey;
   final String title;
@@ -25,9 +25,9 @@ class TabItem extends StatelessWidget {
   final Function(UniqueKey uniqueKey) callbackFunction;
   final Color textColor;
   final Color iconColor;
+  final double fontSize;
 
   final double iconYAlign = ICON_ON;
-  final double textYAlign = TEXT_OFF;
   final double iconAlpha = ALPHA_ON;
 
   @override
@@ -41,7 +41,7 @@ class TabItem extends StatelessWidget {
             width: double.infinity,
             child: AnimatedAlign(
                 duration: Duration(milliseconds: ANIM_DURATION),
-                alignment: Alignment(0, (selected) ? TEXT_ON : TEXT_OFF),
+                alignment: Alignment(0, (selected) ? TEXT_ON : 1 + fontSize / 2),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
@@ -49,7 +49,8 @@ class TabItem extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                     maxLines: 1,
                     style: TextStyle(
-                        fontWeight: FontWeight.w600, color: textColor),
+                        fontWeight: FontWeight.w600, color: textColor,
+                    fontSize: fontSize),
                   ),
                 )),
           ),
