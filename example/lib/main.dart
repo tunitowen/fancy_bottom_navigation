@@ -58,6 +58,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ],
         initialSelection: 1,
         key: bottomNavigationKey,
+        fontSize: 18,
         onTabChangedListener: (position) {
           setState(() {
             currentPage = position;
