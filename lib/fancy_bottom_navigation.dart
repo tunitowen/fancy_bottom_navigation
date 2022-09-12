@@ -109,6 +109,7 @@ class FancyBottomNavigationState extends State<FancyBottomNavigation>
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.bottomCenter,
+      clipBehavior: Clip.none
       children: <Widget>[
         Container(
           height: BAR_HEIGHT,
