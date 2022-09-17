@@ -9,23 +9,21 @@ const double ALPHA_ON = 1;
 const int ANIM_DURATION = 300;
 
 class TabItem extends StatelessWidget {
-  TabItem(
-      {required this.uniqueKey,
-      required this.selected,
-      required this.iconData,
-      required this.title,
-      required this.callbackFunction,
-      required this.textColor,
-      required this.iconColor});
+  TabItem({
+    required this.uniqueKey,
+    required this.selected,
+    required this.icon,
+    required this.title,
+    required this.callbackFunction,
+    required this.textStyle,
+  });
 
   final UniqueKey uniqueKey;
   final String title;
-  final IconData iconData;
+  final Widget icon;
   final bool selected;
   final Function(UniqueKey uniqueKey) callbackFunction;
-  final Color textColor;
-  final Color iconColor;
-
+  final TextStyle textStyle;
   final double iconYAlign = ICON_ON;
   final double textYAlign = TEXT_OFF;
   final double iconAlpha = ALPHA_ON;
@@ -40,18 +38,18 @@ class TabItem extends StatelessWidget {
             height: double.infinity,
             width: double.infinity,
             child: AnimatedAlign(
-                duration: Duration(milliseconds: ANIM_DURATION),
-                alignment: Alignment(0, (selected) ? TEXT_ON : TEXT_OFF),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    title,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 1,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600, color: textColor),
-                  ),
-                )),
+              duration: Duration(milliseconds: ANIM_DURATION),
+              alignment: Alignment(0, (selected) ? TEXT_ON : TEXT_OFF),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: Text(
+                  title,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                  style: textStyle,
+                ),
+              ),
+            ),
           ),
           Container(
             height: double.infinity,
@@ -66,12 +64,9 @@ class TabItem extends StatelessWidget {
                 child: IconButton(
                   highlightColor: Colors.transparent,
                   splashColor: Colors.transparent,
-                  padding: EdgeInsets.all(0),
+                  padding: EdgeInsets.zero,
                   alignment: Alignment(0, 0),
-                  icon: Icon(
-                    iconData,
-                    color: iconColor,
-                  ),
+                  icon: icon,
                   onPressed: () {
                     callbackFunction(uniqueKey);
                   },
