@@ -79,23 +79,15 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text("This is the home page"),
-            RaisedButton(
-              child: Text(
-                "Start new page",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).primaryColor,
+            ElevatedButton(
+              child: Text("Start new page"),
               onPressed: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SecondPage()));
               },
             ),
-            RaisedButton(
-              child: Text(
-                "Change to page 3",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).accentColor,
+            ElevatedButton(
+              child: Text("Change to page 3"),
               onPressed: () {
                 final FancyBottomNavigationState fState = bottomNavigationKey
                     .currentState as FancyBottomNavigationState;
@@ -109,12 +101,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text("This is the search page"),
-            RaisedButton(
-              child: Text(
-                "Start new page",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).primaryColor,
+            ElevatedButton(
+              child: Text("Start new page"),
               onPressed: () {
                 Navigator.of(context).push(
                     MaterialPageRoute(builder: (context) => SecondPage()));
@@ -127,12 +115,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             Text("This is the basket page"),
-            RaisedButton(
-              child: Text(
-                "Start new page",
-                style: TextStyle(color: Colors.white),
-              ),
-              color: Theme.of(context).primaryColor,
+            ElevatedButton(
+              child: Text("Start new page"),
               onPressed: () {},
             )
           ],
