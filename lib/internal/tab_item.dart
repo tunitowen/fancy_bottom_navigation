@@ -72,6 +72,7 @@ class TabItem extends StatelessWidget {
                     iconData,
                     color: iconColor,
                   ),
+                  tooltip: title,
                   onPressed: () {
                     callbackFunction(uniqueKey);
                   },
